@@ -6,3 +6,8 @@ class Carta(sprite.Sprite):
         self.image=transform.scale(self.image,(80,160))
         #self.image.set_colorkey(BLACK)
         self.rect=self.image.get_rect()
+    def setRect(self,x,y):
+        self.rect.x=x
+        self.rect.y=y
+    def getX(slef):
+        pass
