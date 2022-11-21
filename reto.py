@@ -117,7 +117,6 @@ while isRunnig:
         #cuando se presiona    
         if e.type==MOUSEBUTTONDOWN:
             if pila1.getTop().rect.collidepoint(mouse.get_pos())  and bandera == True and cartica!=None or pila2.getTop().rect.collidepoint(mouse.get_pos()) and bandera == True and cartica!=None:
-                print("entreeee")
                 colicion=True
                 if(pila1.getTop().rect.collidepoint(mouse.get_pos())):
                     pila1.add(cartica)
