@@ -27,4 +27,10 @@ class Pila:
         for i in range(self.size):
             if(i==indice):
                 return self.stack[i]
+    def recorer(self,num):
+        bandera=True
+        for i in range(self.size):
+            if(self.stack[i].num==num):
+                bandera= False
+        return bandera
         

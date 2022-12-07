@@ -5,10 +5,11 @@ class Cartap:
         if len(args)==0:
             self.image=None
             self.rect=None
-        if len(args)==3:
+        if len(args)==4:
             self.image=image.load(args[0]).convert()
             self.image=transform.scale(self.image,(90,110))
             self.rect=Rect(args[1],args[2],90,110)
+            self.num=args[3]
     def getRect(self):
         return self.rect
     def setRect(self,x,y):

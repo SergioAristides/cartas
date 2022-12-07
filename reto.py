@@ -1,6 +1,7 @@
 from pygame import *
 from cartap import Cartap
 from clsPila import Pila
+from random import randint
 import sys
 init()
 
@@ -36,17 +37,41 @@ y=60
 #instancias de las pilas
 pila1=Pila()
 pila2=Pila()
+pila3=Pila()
 
 
 #agregar las cartas a las pilas
 for i in range(14):
-    if(i<7):
-        carta=Cartap("Images/"+str(i+1)+".png",x,y)
-        pila1.add(carta)
+    if(i<6):
+        random=randint(1,5)
+        if(pila1.recorer(random) and pila1.size!=0):
+            carta=Cartap("Images/"+str(random)+".png",x,y,random)
+            pila1.add(carta)
+        elif(i==0 and pila1.size==0):
+            carta=Cartap("Images/"+str(random)+".png",x,y,random)
+            pila1.add(carta)
 
+        else:
+            #if(i!=1):
+            print(i)
+            i-=1
+    if(i>=5 and i <=10):
+        random=randint(6,10)
+        if(pila2.recorer(random) or i==0):
+            carta=Cartap("Images/"+str(random)+".png",x,y,random)
+            pila2.add(carta)
+        else:
+            #if(i!=0):
+                i-=1
+            
     else:
-        carta=Cartap("Images/"+str(i+1)+".png",x,y)
-        pila2.add(carta)
+        random=randint(10,14)
+        if(pila3.recorer(random) or i==0):       
+            carta=Cartap("Images/"+str(random)+".png",x,y,random)
+            pila3.add(carta)
+        else:
+            if(i!=0):
+                i-=1
 
 
 
@@ -67,7 +92,19 @@ def drawPokerPilas(x,y):
         #recorrerPilas(pila_uno,pila_dos)
         screen.blit(pila2.devolverCarta(j).image,
                         [pila2.devolverCarta(j).getRectX(),pila2.devolverCarta(j).getRectY()])
-        y+=50     
+        y+=50 
+        
+    for k in range(pila3.size):
+        if(k==0):
+            x=500
+            y=60
+        pila3.devolverCarta(k).setRect(x,y)
+        #recorrerPilas(pila_uno,pila_dos)
+        screen.blit(pila3.devolverCarta(k).image,
+                        [pila3.devolverCarta(k).getRectX(),pila3.devolverCarta(k).getRectY()])
+        y+=50 
+        
+        
 #pinta los botones
 def pintarBoton(screen,color,boton,palabra):
     draw.rect(screen,color,boton)
@@ -76,10 +113,10 @@ def pintarBoton(screen,color,boton,palabra):
                     boton.y+(boton.height-text.get_height())/2))
 
 #coordenadas de los botones
-pila=Rect(500,60,110,60)
-cola=Rect(500,180,110,60)
-arbol=Rect(500,300,110,60)
-grafo=Rect(500,420,110,60)
+pila=Rect(650,60,110,60)
+cola=Rect(650,180,110,60)
+arbol=Rect(650,300,110,60)
+grafo=Rect(650,420,110,60)
 
 #
 cartica_movible=None
@@ -141,7 +178,6 @@ while isRunnig:
     screen.blit(fondo,[0,0])
     if bandera2:
         drawPokerPilas(x1,y1)
-
 
     if(cartica!=None and bandera):
         drawCartae(cartica)
